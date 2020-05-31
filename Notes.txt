@@ -1,1 +1,9 @@
 gcc -ggdb main.c -o main_with_DEBUG (compile binary with GDB debugging symbols)
+
+Symbol Files:
+
+Info sources
+Info variables (not local variables)
+Info scope function_name
+Info functions
+maint print symbols filename_to_store
