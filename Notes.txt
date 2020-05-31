@@ -42,7 +42,7 @@ U | Symbol Undefined right now
 
 NM Usage:
 
-nm -A ./SGDE-video-3_DEBUG | grep main
+nm -A ./SGDE-video-3_DEBUG | grep main (Grep for function name)
 nm - n ./SGDE-video-3_DEBUG (Display symbols in sorted order)
 nm -g ./SGDE-video-3_DEBUG (External)
 nm -S ./SGDE-video-3_DEBUG (Display size)
