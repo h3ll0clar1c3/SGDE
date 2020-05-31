@@ -40,5 +40,11 @@ U | Symbol Undefined right now
 * Lower Case is Local Symbol
 * Upper Case is External
 
+NM Usage:
+
+nm -A ./SGDE-video-3_DEBUG | grep main
+nm - n ./SGDE-video-3_DEBUG (Display symbols in sorted order)
+nm -g ./SGDE-video-3_DEBUG (External)
+nm -S ./SGDE-video-3_DEBUG (Display size)
 
 
