@@ -4,10 +4,10 @@ Debug Symbol Files:
 
 gdb ./SGDE-video2_DEBUG
 (gdb) list
-(gdb) Info sources
+(gdb) Info functions
 (gdb) Info variables (not local variables)
 (gdb) Info scope function_name
-(gdb) Info functions
+(gdb) Info sources
 (gdb) maint print symbols filename_to_store
 
 Ripping Debug Symbols off a binary:
@@ -19,5 +19,8 @@ Stripping Debug Symbols off a binary:
 strip --strip-debug SGDE-video-2_DEBUG (symbols stripped off the binary)
 strip --strip-debug --strip-unneeded SGDE-video-2_DEBUG (additional non-essential symbols stripped off the binary)
 
+Adding Debug Symbols to a binary:
 
+objcopy --add-gnu-debuglink=DEBUG_symbols SGDE-video-2_NO_DEBUG (add it in the binary)
+(gdb) symbol-file DEBUG_symbols (load the symbol file within GDB)
 
