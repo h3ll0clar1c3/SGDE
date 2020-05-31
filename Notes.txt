@@ -29,5 +29,16 @@ NM - List Symbols from Object Files:
 nm ./SGDE-video-4
 08048474 T AddNumbers (3 columns; Virtual Address | Symbol Type | Symbol Name)
 
+Symbol Types:
+
+A | Absolute Symbol
+B | In the Unitialized Data Section (BSS)
+D | In the Initialized Data Section 
+N | Debugging Symbol
+T | In the Text Section
+U | Symbol Undefined right now
+* Lower Case is Local Symbol
+* Upper Case is External
+
 
 
