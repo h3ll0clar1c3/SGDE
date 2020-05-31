@@ -2,8 +2,10 @@ gcc -ggdb main.c -o main_with_DEBUG (compile binary with GDB debugging symbols)
 
 Symbol Files:
 
-Info sources
-Info variables (not local variables)
-Info scope function_name
-Info functions
-maint print symbols filename_to_store
+gdb ./SGDE-video2-DEBUG
+(gdb) list
+(gdb) Info sources
+(gdb) Info variables (not local variables)
+(gdb) Info scope function_name
+(gdb) Info functions
+(gdb) maint print symbols filename_to_store
