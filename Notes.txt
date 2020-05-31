@@ -24,3 +24,7 @@ Adding Debug Symbols to a binary:
 objcopy --add-gnu-debuglink=DEBUG_symbols SGDE-video-2_NO_DEBUG (add it in the binary)
 (gdb) symbol-file DEBUG_symbols (load the symbol file within GDB)
 
+NM - List Symbols from Object Files:
+
+
+
