@@ -26,7 +26,7 @@ objcopy --add-gnu-debuglink=DEBUG_symbols SGDE-video-2_NO_DEBUG (add it in the b
 
 NM - List Symbols from Object Files:
 
-nm ./SGDE-video-4
+nm ./SGDE-video-3
 08048474 T AddNumbers (3 columns; Virtual Address | Symbol Type | Symbol Name)
 
 Symbol Types:
