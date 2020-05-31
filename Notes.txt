@@ -17,7 +17,7 @@ objcopy --only-keep-debug SGDE-video-2_DEBUG DEBUG_symbols (symbols ripped and s
 Stripping Debug Symbols off a binary:
 
 strip --strip-debug SGDE-video-2_DEBUG (symbols stripped off the binary)
-strip --strip-debug --strip-unneeded SGDE-video-2_DEBUG (symbols and other non-essential symbols stripped off the binary)
+strip --strip-debug --strip-unneeded SGDE-video-2_DEBUG (additional non-essential symbols stripped off the binary)
 
 
 
