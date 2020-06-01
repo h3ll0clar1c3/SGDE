@@ -142,3 +142,39 @@ $2 = 0xbffff7c3 "/SGDE-Files/video-5/video-5/video-5/SGDE-video-5_DEBUG"
 0xbffff81e:	 "test"
 (gdb) x/s argv[0]
 0xbffff7c3:	 "/SGDE-Files/video-5/video-5/video-5/SGDE-video-5_DEBUG"
+(gdb) info registers
+eax            0x2	2
+ecx            0xbffff694	-1073744236
+edx            0xbffff624	-1073744348
+ebx            0xb7fc6ff4	-1208193036
+esp            0xbffff5e0	0xbffff5e0
+ebp            0xbffff5f8	0xbffff5f8
+esi            0x0	0
+edi            0x0	0
+eip            0x80484bd	0x80484bd <main+9>
+eflags         0x282	[ SF IF ]
+cs             0x73	115
+ss             0x7b	123
+ds             0x7b	123
+es             0x7b	123
+fs             0x0	0
+gs             0x33	51
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x080484b4 <+0>:	push   %ebp
+   0x080484b5 <+1>:	mov    %esp,%ebp
+   0x080484b7 <+3>:	and    $0xfffffff0,%esp
+   0x080484ba <+6>:	sub    $0x10,%esp
+=> 0x080484bd <+9>:	mov    0xc(%ebp),%eax
+   0x080484c0 <+12>:	add    $0x4,%eax
+   0x080484c3 <+15>:	mov    (%eax),%eax
+   0x080484c5 <+17>:	mov    %eax,(%esp)
+   0x080484c8 <+20>:	call   0x8048464 <EchoInput>
+   0x080484cd <+25>:	mov    $0x0,%eax
+   0x080484d2 <+30>:	leave  
+   0x080484d3 <+31>:	ret    
+End of assembler dump.
+(gdb) x/i 0x80484bd
+=> 0x80484bd <main+9>:	mov    0xc(%ebp),%eax
+
+
