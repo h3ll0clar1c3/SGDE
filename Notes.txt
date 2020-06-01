@@ -55,3 +55,8 @@ strace -r ./SGDE-video-4 20 30 (Tracing an execution with relative timestamps)
 strace ./SGDE-video-4 20 30 -O Test (Tracing an execution and saving to output file)
 strace -e open,socket,connect,recv nc google.com 80 (Tracing an execution and filtering Syscalls)
 sudo strace -p process_id (Tracing an execution by attaching to a running process)
+strace -c nc google.com 80 (Tracing an execution with statistics on Syscalls)
+
+seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000149           3        51           write
