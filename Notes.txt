@@ -61,7 +61,12 @@ seconds  usecs/call     calls    errors syscall
 ------ ----------- ----------- --------- --------- ----------------
 100.00    0.000149           3        51           write
 
-Breakpoints, Examining Registers and Memory
+Breakpoints, Examining Registers and Memory:
+
+Setting a Breakpoint in GDB:
+- break functionb_name (break main)
+- break address (break *0x080484cd)
+- break line_number (break 30)
 
 (gdb) break main
 Breakpoint 1 at 0x80484bd: file SGDE-video-5.c, line 30.
@@ -176,5 +181,34 @@ Dump of assembler code for function main:
 End of assembler dump.
 (gdb) x/i 0x80484bd
 => 0x80484bd <main+9>:	mov    0xc(%ebp),%eax
+(gdb) x/10xw $esp
+0xbffff5e0:	0xb7fed280	0x00000000	0x080484e9	0xb7fc6ff4
+0xbffff5f0:	0x080484e0	0x00000000	0x00000000	0xb7e394e3
+0xbffff600:	0x00000002	0xbffff694
+(gdb) continue
+Continuing.
+
+Breakpoint 2, EchoInput (userInput=0xbffff81e "test") at SGDE-video-5.c:16
+16	{
+(gdb) stepi
+0x08048476	16	{
+(gdb) stepi
+0x08048479	16	{
+(gdb) step
+20		strcpy(buffer, userInput);
+(gdb) step
+22		printf("\n\n%s\n\n", buffer);
+(gdb) step
 
 
+test
+
+24	}
+(gdb) help step
+Step program until it reaches a different source line.
+Argument N means do this N times (or till program stops for another reason).
+(gdb) help stepi
+Step one instruction exactly.
+Argument N means do this N times (or till program stops for another reason).
+
+Video 6:
