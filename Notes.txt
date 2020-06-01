@@ -87,4 +87,58 @@ ds             0x7b	123
 es             0x7b	123
 fs             0x0	0
 gs             0x33	51
+(gdb) l         
+25	
+26	
+27	int main(int argc, char **argv)
+28	{
+29	
+30		EchoInput(argv[1]);
+31	
+32		return 0;
+33	
+34	}
+(gdb) break EchoInput 
+Breakpoint 2 at 0x8048470: file SGDE-video-5.c, line 16.
+(gdb) info breakpoints 
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x080484bd in main at SGDE-video-5.c:30
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x08048470 in EchoInput at SGDE-video-5.c:16
+(gdb) disable 1
+(gdb) info breakpoints
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep n   0x080484bd in main at SGDE-video-5.c:30
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x08048470 in EchoInput at SGDE-video-5.c:16
+(gdb) enable 1
+(gdb) info breakpoints
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x080484bd in main at SGDE-video-5.c:30
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x08048470 in EchoInput at SGDE-video-5.c:16
+(gdb) delete 1
+(gdb) info breakpoints
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x08048470 in EchoInput at SGDE-video-5.c:16
+(gdb) help x
+Examine memory: x/FMT ADDRESS.
+ADDRESS is an expression for the memory address to examine.
+FMT is a repeat count followed by a format letter and a size letter.
+Format letters are o(octal), x(hex), d(decimal), u(unsigned decimal),
+  t(binary), f(float), a(address), i(instruction), c(char) and s(string).
+Size letters are b(byte), h(halfword), w(word), g(giant, 8 bytes).
+The specified number of objects of the specified size are printed
+according to the format.
 
+Defaults for format and size letters are those previously used.
+Default count is 1.  Default address is following last thing printed
+with this command or "print".
+(gdb) print argv[1] 
+$1 = 0xbffff81e "test"
+(gdb) print argv[0]
+$2 = 0xbffff7c3 "/SGDE-Files/video-5/video-5/video-5/SGDE-video-5_DEBUG"
+(gdb) x/s argv[1]
+0xbffff81e:	 "test"
+(gdb) x/s argv[0]
+0xbffff7c3:	 "/SGDE-Files/video-5/video-5/video-5/SGDE-video-5_DEBUG"
