@@ -49,4 +49,7 @@ nm -S ./SGDE-video-3_DEBUG (Display size)
 
 System Calling with Strace:
 
-
+strace ./SGDE-video-4 20 30 (Tracing an execution and it's system calls)
+strace -t ./SGDE-video-4 20 30 (Tracing an execution with absolute timestamps)
+strace -r ./SGDE-video-4 20 30 (Tracing an execution with relative timestamps)
+strace -o ./SGDE-video-4 20 30 -O Test (Tracing an execution and saving to output file)
