@@ -63,4 +63,28 @@ seconds  usecs/call     calls    errors syscall
 
 Breakpoints, Examining Registers and Memory
 
+(gdb) break main
+Breakpoint 1 at 0x80484bd: file SGDE-video-5.c, line 30.
+(gdb) run test
+Starting program: /SGDE-Files/video-5/video-5/video-5/SGDE-video-5_DEBUG test
+
+Breakpoint 1, main (argc=2, argv=0xbffff694) at SGDE-video-5.c:30
+30		EchoInput(argv[1]);
+(gdb) info registers
+eax            0x2	2
+ecx            0xbffff694	-1073744236
+edx            0xbffff624	-1073744348
+ebx            0xb7fc6ff4	-1208193036
+esp            0xbffff5e0	0xbffff5e0
+ebp            0xbffff5f8	0xbffff5f8
+esi            0x0	0
+edi            0x0	0
+eip            0x80484bd	0x80484bd <main+9>
+eflags         0x282	[ SF IF ]
+cs             0x73	115
+ss             0x7b	123
+ds             0x7b	123
+es             0x7b	123
+fs             0x0	0
+gs             0x33	51
 
