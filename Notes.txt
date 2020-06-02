@@ -595,3 +595,146 @@ Secret code: 4832-3422-3421-9847
 
 Conditional Breakpoints:
 
+gdb ./main
+GNU gdb (Ubuntu/Linaro 7.4-2012.04-0ubuntu2.1) 7.4-2012.04
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+For bug reporting instructions, please see:
+<http://bugs.launchpad.net/gdb-linaro/>...
+Reading symbols from /SGDE-Files/Video-10/Video-10/video-10/main...done.
+(gdb) l
+1	#include<stdio.h>
+2	
+3	int main(int argc, char **argv)
+4	{
+5	
+6		int counter = 10;
+7	
+8		while (counter--)
+9		{
+10			printf("%d\n", counter);
+(gdb) break 10
+Breakpoint 1 at 0x8048429: file main.c, line 10.
+(gdb) l 1
+1	#include<stdio.h>
+2	
+3	int main(int argc, char **argv)
+4	{
+5	
+6		int counter = 10;
+7	
+8		while (counter--)
+9		{
+10			printf("%d\n", counter);
+(gdb) condition 1 counter == 5
+(gdb) info breakpoints
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x08048429 in main at main.c:10
+	stop only if counter == 5
+(gdb) run demopass
+Starting program: /SGDE-Files/Video-10/Video-10/video-10/main demopass
+9
+8
+7
+6
+
+Breakpoint 1, main (argc=2, argv=0xbffff6a4) at main.c:10
+10			printf("%d\n", counter);
+(gdb) print counter
+$1 = 5
+
+gdb ./main_nodebug 
+GNU gdb (Ubuntu/Linaro 7.4-2012.04-0ubuntu2.1) 7.4-2012.04
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+For bug reporting instructions, please see:
+<http://bugs.launchpad.net/gdb-linaro/>...
+Reading symbols from /SGDE-Files/Video-10/Video-10/video-10/main_nodebug...(no debugging symbols found)...done.
+(gdb) disas main 
+Dump of assembler code for function main:
+   0x08048414 <+0>:	push   %ebp
+   0x08048415 <+1>:	mov    %esp,%ebp
+   0x08048417 <+3>:	push   %edi
+   0x08048418 <+4>:	push   %esi
+   0x08048419 <+5>:	and    $0xfffffff0,%esp
+   0x0804841c <+8>:	sub    $0x20,%esp
+   0x0804841f <+11>:	movl   $0xa,0x1c(%esp)
+   0x08048427 <+19>:	jmp    0x804843e <main+42>
+   0x08048429 <+21>:	mov    $0x8048580,%eax
+   0x0804842e <+26>:	mov    0x1c(%esp),%edx
+   0x08048432 <+30>:	mov    %edx,0x4(%esp)
+   0x08048436 <+34>:	mov    %eax,(%esp)
+   0x08048439 <+37>:	call   0x8048320 <printf@plt>
+   0x0804843e <+42>:	cmpl   $0x0,0x1c(%esp)
+   0x08048443 <+47>:	setne  %al
+   0x08048446 <+50>:	subl   $0x1,0x1c(%esp)
+   0x0804844b <+55>:	test   %al,%al
+   0x0804844d <+57>:	jne    0x8048429 <main+21>
+   0x0804844f <+59>:	mov    0xc(%ebp),%eax
+   0x08048452 <+62>:	add    $0x4,%eax
+   0x08048455 <+65>:	mov    (%eax),%eax
+   0x08048457 <+67>:	mov    %eax,%edx
+   0x08048459 <+69>:	mov    $0x8048584,%eax
+   0x0804845e <+74>:	mov    $0x7,%ecx
+   0x08048463 <+79>:	mov    %edx,%esi
+   0x08048465 <+81>:	mov    %eax,%edi
+   0x08048467 <+83>:	repz cmpsb %es:(%edi),%ds:(%esi)
+   0x08048469 <+85>:	seta   %dl
+   0x0804846c <+88>:	setb   %al
+   0x0804846f <+91>:	mov    %edx,%ecx
+   0x08048471 <+93>:	sub    %al,%cl
+   0x08048473 <+95>:	mov    %ecx,%eax
+   0x08048475 <+97>:	movsbl %al,%eax
+   0x08048478 <+100>:	test   %eax,%eax
+   0x0804847a <+102>:	jne    0x804848a <main+118>
+   0x0804847c <+104>:	movl   $0x804858b,(%esp)
+   0x08048483 <+111>:	call   0x8048330 <puts@plt>
+   0x08048488 <+116>:	jmp    0x8048496 <main+130>
+   0x0804848a <+118>:	movl   $0x804859e,(%esp)
+   0x08048491 <+125>:	call   0x8048330 <puts@plt>
+   0x08048496 <+130>:	mov    $0x0,%eax
+   0x0804849b <+135>:	lea    -0x8(%ebp),%esp
+   0x0804849e <+138>:	pop    %esi
+   0x0804849f <+139>:	pop    %edi
+   0x080484a0 <+140>:	pop    %ebp
+   0x080484a1 <+141>:	ret    
+End of assembler dump.
+(gdb) break *0x08048478          
+Breakpoint 1 at 0x8048478
+(gdb) condition 1 $eax != 0
+(gdb) info breakpoints 
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x08048478 <main+100>
+	stop only if $eax != 0
+(gdb) run demopass
+Starting program: /SGDE-Files/Video-10/Video-10/video-10/main_nodebug demopass
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+
+Breakpoint 1, 0x08048478 in main ()
+(gdb) print $eax
+$1 = -1
+(gdb) set $eax = 0
+(gdb) c
+Continuing.
+Correct Password!
+
+[Inferior 1 (process 22815) exited normally]
+
+Video 11:
