@@ -391,4 +391,207 @@ Symbol result is a variable at frame base reg $esp offset 4+-20, length 4.
 
 Disassembling and Cracking a Simple Binary:
 
+gdb ./SGDE-video-9_DEBUG 
+GNU gdb (Ubuntu/Linaro 7.4-2012.04-0ubuntu2.1) 7.4-2012.04
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+For bug reporting instructions, please see:
+<http://bugs.launchpad.net/gdb-linaro/>...
+Reading symbols from /SGDE-Files/video-9/video-9/SGDE-video-9_DEBUG...done.
+(gdb) set disassembly-flavor intel
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x080484b7 <+0>:	push   ebp
+   0x080484b8 <+1>:	mov    ebp,esp
+   0x080484ba <+3>:	and    esp,0xfffffff0
+   0x080484bd <+6>:	sub    esp,0x20
+   0x080484c0 <+9>:	mov    DWORD PTR [esp+0x1c],0x0
+   0x080484c8 <+17>:	cmp    DWORD PTR [ebp+0x8],0x1
+   0x080484cc <+21>:	jg     0x80484f0 <main+57>
+   0x080484ce <+23>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484d1 <+26>:	mov    edx,DWORD PTR [eax]
+   0x080484d3 <+28>:	mov    eax,0x8048622
+   0x080484d8 <+33>:	mov    DWORD PTR [esp+0x4],edx
+   0x080484dc <+37>:	mov    DWORD PTR [esp],eax
+   0x080484df <+40>:	call   0x8048370 <printf@plt>
+   0x080484e4 <+45>:	mov    DWORD PTR [esp],0x0
+   0x080484eb <+52>:	call   0x80483a0 <exit@plt>
+   0x080484f0 <+57>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484f3 <+60>:	add    eax,0x4
+   0x080484f6 <+63>:	mov    eax,DWORD PTR [eax]
+   0x080484f8 <+65>:	mov    DWORD PTR [esp+0x4],0x8048638
+   0x08048500 <+73>:	mov    DWORD PTR [esp],eax
+   0x08048503 <+76>:	call   0x8048488 <IsPasswordCorrect>
+   0x08048508 <+81>:	mov    DWORD PTR [esp+0x1c],eax
+   0x0804850c <+85>:	cmp    DWORD PTR [esp+0x1c],0x1
+   0x08048511 <+90>:	jne    0x804851a <main+99>
+   0x08048513 <+92>:	call   0x8048474 <UnlockSecret>
+   0x08048518 <+97>:	jmp    0x8048526 <main+111>
+   0x0804851a <+99>:	mov    DWORD PTR [esp],0x8048640
+   0x08048521 <+106>:	call   0x8048380 <puts@plt>
+   0x08048526 <+111>:	mov    eax,0x0
+   0x0804852b <+116>:	leave  
+   0x0804852c <+117>:	ret    
+End of assembler dump.
+(gdb) break *0x08048508
+Breakpoint 1 at 0x8048508: file SGDE-video-9.c, line 52.
+(gdb) run aaaa
+Starting program: /SGDE-Files/video-9/video-9/SGDE-video-9_DEBUG aaaa
+
+Breakpoint 1, 0x08048508 in main (argc=2, argv=0xbffff6a4) at SGDE-video-9.c:52
+52	SGDE-video-9.c: No such file or directory.
+(gdb) disas $eip
+Dump of assembler code for function main:
+   0x080484b7 <+0>:	push   ebp
+   0x080484b8 <+1>:	mov    ebp,esp
+   0x080484ba <+3>:	and    esp,0xfffffff0
+   0x080484bd <+6>:	sub    esp,0x20
+   0x080484c0 <+9>:	mov    DWORD PTR [esp+0x1c],0x0
+   0x080484c8 <+17>:	cmp    DWORD PTR [ebp+0x8],0x1
+   0x080484cc <+21>:	jg     0x80484f0 <main+57>
+   0x080484ce <+23>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484d1 <+26>:	mov    edx,DWORD PTR [eax]
+   0x080484d3 <+28>:	mov    eax,0x8048622
+   0x080484d8 <+33>:	mov    DWORD PTR [esp+0x4],edx
+   0x080484dc <+37>:	mov    DWORD PTR [esp],eax
+   0x080484df <+40>:	call   0x8048370 <printf@plt>
+   0x080484e4 <+45>:	mov    DWORD PTR [esp],0x0
+   0x080484eb <+52>:	call   0x80483a0 <exit@plt>
+   0x080484f0 <+57>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484f3 <+60>:	add    eax,0x4
+   0x080484f6 <+63>:	mov    eax,DWORD PTR [eax]
+   0x080484f8 <+65>:	mov    DWORD PTR [esp+0x4],0x8048638
+   0x08048500 <+73>:	mov    DWORD PTR [esp],eax
+   0x08048503 <+76>:	call   0x8048488 <IsPasswordCorrect>
+=> 0x08048508 <+81>:	mov    DWORD PTR [esp+0x1c],eax
+   0x0804850c <+85>:	cmp    DWORD PTR [esp+0x1c],0x1
+   0x08048511 <+90>:	jne    0x804851a <main+99>
+   0x08048513 <+92>:	call   0x8048474 <UnlockSecret>
+   0x08048518 <+97>:	jmp    0x8048526 <main+111>
+   0x0804851a <+99>:	mov    DWORD PTR [esp],0x8048640
+   0x08048521 <+106>:	call   0x8048380 <puts@plt>
+   0x08048526 <+111>:	mov    eax,0x0
+   0x0804852b <+116>:	leave  
+   0x0804852c <+117>:	ret    
+End of assembler dump.
+(gdb) info registers
+eax            0x0	0
+ecx            0x9	9
+edx            0xbffff82d	-1073743827
+ebx            0xb7fc6ff4	-1208193036
+esp            0xbffff5e0	0xbffff5e0
+ebp            0xbffff608	0xbffff608
+esi            0x0	0
+edi            0x0	0
+eip            0x8048508	0x8048508 <main+81>
+eflags         0x202	[ IF ]
+cs             0x73	115
+ss             0x7b	123
+ds             0x7b	123
+es             0x7b	123
+fs             0x0	0
+gs             0x33	51
+(gdb) set $eax = 1
+(gdb) info registers
+eax            0x1	1
+ecx            0x9	9
+edx            0xbffff82d	-1073743827
+ebx            0xb7fc6ff4	-1208193036
+esp            0xbffff5e0	0xbffff5e0
+ebp            0xbffff608	0xbffff608
+esi            0x0	0
+edi            0x0	0
+eip            0x8048508	0x8048508 <main+81>
+eflags         0x202	[ IF ]
+cs             0x73	115
+ss             0x7b	123
+ds             0x7b	123
+es             0x7b	123
+fs             0x0	0
+gs             0x33	51
+(gdb) stepi
+54	in SGDE-video-9.c
+(gdb) stepi
+0x08048511	54	in SGDE-video-9.c
+(gdb) disas $eip
+Dump of assembler code for function main:
+   0x080484b7 <+0>:	push   ebp
+   0x080484b8 <+1>:	mov    ebp,esp
+   0x080484ba <+3>:	and    esp,0xfffffff0
+   0x080484bd <+6>:	sub    esp,0x20
+   0x080484c0 <+9>:	mov    DWORD PTR [esp+0x1c],0x0
+   0x080484c8 <+17>:	cmp    DWORD PTR [ebp+0x8],0x1
+   0x080484cc <+21>:	jg     0x80484f0 <main+57>
+   0x080484ce <+23>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484d1 <+26>:	mov    edx,DWORD PTR [eax]
+   0x080484d3 <+28>:	mov    eax,0x8048622
+   0x080484d8 <+33>:	mov    DWORD PTR [esp+0x4],edx
+   0x080484dc <+37>:	mov    DWORD PTR [esp],eax
+   0x080484df <+40>:	call   0x8048370 <printf@plt>
+   0x080484e4 <+45>:	mov    DWORD PTR [esp],0x0
+   0x080484eb <+52>:	call   0x80483a0 <exit@plt>
+   0x080484f0 <+57>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484f3 <+60>:	add    eax,0x4
+   0x080484f6 <+63>:	mov    eax,DWORD PTR [eax]
+   0x080484f8 <+65>:	mov    DWORD PTR [esp+0x4],0x8048638
+   0x08048500 <+73>:	mov    DWORD PTR [esp],eax
+   0x08048503 <+76>:	call   0x8048488 <IsPasswordCorrect>
+   0x08048508 <+81>:	mov    DWORD PTR [esp+0x1c],eax
+   0x0804850c <+85>:	cmp    DWORD PTR [esp+0x1c],0x1
+=> 0x08048511 <+90>:	jne    0x804851a <main+99>
+   0x08048513 <+92>:	call   0x8048474 <UnlockSecret>
+   0x08048518 <+97>:	jmp    0x8048526 <main+111>
+   0x0804851a <+99>:	mov    DWORD PTR [esp],0x8048640
+   0x08048521 <+106>:	call   0x8048380 <puts@plt>
+   0x08048526 <+111>:	mov    eax,0x0
+   0x0804852b <+116>:	leave  
+   0x0804852c <+117>:	ret    
+End of assembler dump.
+(gdb) stepi
+56	in SGDE-video-9.c
+(gdb) disas $eip
+Dump of assembler code for function main:
+   0x080484b7 <+0>:	push   ebp
+   0x080484b8 <+1>:	mov    ebp,esp
+   0x080484ba <+3>:	and    esp,0xfffffff0
+   0x080484bd <+6>:	sub    esp,0x20
+   0x080484c0 <+9>:	mov    DWORD PTR [esp+0x1c],0x0
+   0x080484c8 <+17>:	cmp    DWORD PTR [ebp+0x8],0x1
+   0x080484cc <+21>:	jg     0x80484f0 <main+57>
+   0x080484ce <+23>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484d1 <+26>:	mov    edx,DWORD PTR [eax]
+   0x080484d3 <+28>:	mov    eax,0x8048622
+   0x080484d8 <+33>:	mov    DWORD PTR [esp+0x4],edx
+   0x080484dc <+37>:	mov    DWORD PTR [esp],eax
+   0x080484df <+40>:	call   0x8048370 <printf@plt>
+   0x080484e4 <+45>:	mov    DWORD PTR [esp],0x0
+   0x080484eb <+52>:	call   0x80483a0 <exit@plt>
+   0x080484f0 <+57>:	mov    eax,DWORD PTR [ebp+0xc]
+   0x080484f3 <+60>:	add    eax,0x4
+   0x080484f6 <+63>:	mov    eax,DWORD PTR [eax]
+   0x080484f8 <+65>:	mov    DWORD PTR [esp+0x4],0x8048638
+   0x08048500 <+73>:	mov    DWORD PTR [esp],eax
+   0x08048503 <+76>:	call   0x8048488 <IsPasswordCorrect>
+   0x08048508 <+81>:	mov    DWORD PTR [esp+0x1c],eax
+   0x0804850c <+85>:	cmp    DWORD PTR [esp+0x1c],0x1
+   0x08048511 <+90>:	jne    0x804851a <main+99>
+=> 0x08048513 <+92>:	call   0x8048474 <UnlockSecret>
+   0x08048518 <+97>:	jmp    0x8048526 <main+111>
+   0x0804851a <+99>:	mov    DWORD PTR [esp],0x8048640
+   0x08048521 <+106>:	call   0x8048380 <puts@plt>
+   0x08048526 <+111>:	mov    eax,0x0
+   0x0804852b <+116>:	leave  
+   0x0804852c <+117>:	ret    
+End of assembler dump.
+(gdb) c
+Continuing.
+Secret code: 4832-3422-3421-9847
+
+[Inferior 1 (process 21288) exited normally]
+
+Conditional Breakpoints:
 
