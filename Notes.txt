@@ -243,3 +243,67 @@ BBBB
 Sum of 10 + 20 is 30
 
 [Inferior 1 (process 9768) exited normally]
+(gdb) l
+47	
+48		EchoInput(argv[1]);
+49	
+50		sum = AddNumbers(atoi(argv[2]), atoi(argv[3]));
+51	
+52		printf("Sum of %s + %s is %d\n\n", argv[2], argv[3], sum );
+53	
+54		return 0;
+55	
+56	}
+(gdb) break 52
+Breakpoint 2 at 0x80485c3: file SGDE-video-6.c, line 52.
+(gdb) c
+Continuing.
+
+
+AAAA
+
+
+Breakpoint 2, main (argc=4, argv=0xbffff694) at SGDE-video-6.c:52
+52		printf("Sum of %s + %s is %d\n\n", argv[2], argv[3], sum );
+(gdb) print sum
+$1 = 30
+(gdb) set sum = 2000
+(gdb) c
+Continuing.
+Sum of 10 + 20 is 2000
+
+[Inferior 1 (process 10398) exited normally]
+(gdb) print FunctionShouldNotExecute 
+$1 = {void (void)} 0x80484f4 <FunctionShouldNotExecute>
+(gdb) run AAAA 10 20
+Starting program: /home/osboxes/Downloads/GNU Debugger/SGDE-Files/video-6/video-6/video-6/SGDE-video-6 AAA 10 20
+
+Breakpoint 1, main (argc=4, argv=0xbffff694) at SGDE-video-6.c:46
+46		int sum = 0;
+(gdb) info registers 
+eax            0x4	4
+ecx            0xbffff694	-1073744236
+edx            0xbffff624	-1073744348
+ebx            0xb7fc6ff4	-1208193036
+esp            0xbffff5d0	0xbffff5d0
+ebp            0xbffff5f8	0xbffff5f8
+esi            0x0	0
+edi            0x0	0
+eip            0x8048579	0x8048579 <main+10>
+eflags         0x282	[ SF IF ]
+cs             0x73	115
+ss             0x7b	123
+ds             0x7b	123
+es             0x7b	123
+fs             0x0	0
+gs             0x33	51
+(gdb) set $eip = 0x80484f4
+(gdb) c
+Continuing.
+
+
+I should not execute!!!
+
+[Inferior 1 (process 10826) exited normally]
+
+Video 7:
