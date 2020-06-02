@@ -389,6 +389,6 @@ Symbol password is a variable at frame base reg $esp offset 4+0, length 4.
 Symbol userInput is a variable at frame base reg $esp offset 4+4, length 4.
 Symbol result is a variable at frame base reg $esp offset 4+-20, length 4.
 
-Video 9:
+Disassembling and Cracking a Simple Binary:
 
 
