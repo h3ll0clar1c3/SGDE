@@ -736,5 +736,3 @@ Continuing.
 Correct Password!
 
 [Inferior 1 (process 22815) exited normally]
-
-Video 11:
