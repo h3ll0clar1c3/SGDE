@@ -342,3 +342,7 @@ $8 = 1
 (gdb) call ComparePasswords("test","test")
 $9 = 1
 
+Cracking a Simple Binary with DEBUG Symbols:
+
+
+
