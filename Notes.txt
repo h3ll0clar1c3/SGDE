@@ -306,4 +306,36 @@ I should not execute!!!
 
 [Inferior 1 (process 10826) exited normally]
 
-Video 7:
+Convenience Variables and Calling Routines:
+
+(gdb) run AAA 10 20
+Starting program: /SGDE-Files/video-7/video-7/video-7/SGDE-video-7 AAA 10 20
+
+Breakpoint 1, main (argc=4, argv=0xbffff694) at SGDE-video-7.c:30
+30		if (argc < 2 ) 
+(gdb) set $dyn = (char *)malloc(10)
+(gdb) print $dyn
+$5 = 0x804b008 ""
+(gdb) x/10xb $dyn
+0x804b008:	0x00	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+0x804b010:	0x00	0x00
+(gdb) call strcpy($dyn, argv[1])
+$6 = 134524936
+(gdb) x/10xb $dyn
+0x804b008:	0x41	0x41	0x41	0x00	0x00	0x00	0x00	0x00
+0x804b010:	0x00	0x00
+(gdb) x/10xc $dyn
+0x804b008:	65 'A'	65 'A'	65 'A'	0 '\000'	0 '\000'	0 '\000'	0 '\000'	0 '\000'
+0x804b010:	0 '\000'	0 '\000'
+(gdb) set argv[1] = $dyn
+(gdb) info functions
+All defined functions:
+
+File SGDE-video-7.c:
+int ComparePasswords(char *, char *);
+int main(int, char **);
+(gdb) call ComparePasswords ("test","test")
+(gdb) set $j = "test2" 
+(gdb) set $i = "test2"
+(gdb) call ComparePasswords ($i, $j)
+$8 = 1
