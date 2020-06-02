@@ -216,7 +216,7 @@ Modifying Registers and Memory:
 (gdb) break main
 Breakpoint 1 at 0x8048579: file SGDE-video-6.c, line 46.
 (gdb) run AAAA 10 20
-Starting program: /home/osboxes/Downloads/GNU Debugger/SGDE-Files/video-6/video-6/video-6/SGDE-video-6 AAAA 10 20
+Starting program: /SGDE-Files/video-6/video-6/video-6/SGDE-video-6 AAAA 10 20
 
 Breakpoint 1, main (argc=4, argv=0xbffff694) at SGDE-video-6.c:46
 46		int sum = 0;
@@ -276,7 +276,7 @@ Sum of 10 + 20 is 2000
 (gdb) print FunctionShouldNotExecute 
 $1 = {void (void)} 0x80484f4 <FunctionShouldNotExecute>
 (gdb) run AAAA 10 20
-Starting program: /home/osboxes/Downloads/GNU Debugger/SGDE-Files/video-6/video-6/video-6/SGDE-video-6 AAA 10 20
+Starting program: /SGDE-Files/video-6/video-6/video-6/SGDE-video-6 AAA 10 20
 
 Breakpoint 1, main (argc=4, argv=0xbffff694) at SGDE-video-6.c:46
 46		int sum = 0;
