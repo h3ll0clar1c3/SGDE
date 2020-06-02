@@ -339,3 +339,6 @@ int main(int, char **);
 (gdb) set $i = "test2"
 (gdb) call ComparePasswords ($i, $j)
 $8 = 1
+(gdb) call ComparePasswords("test","test")
+$9 = 1
+
