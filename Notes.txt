@@ -211,4 +211,26 @@ Argument N means do this N times (or till program stops for another reason).
 Step one instruction exactly.
 Argument N means do this N times (or till program stops for another reason).
 
-Video 6:
+Modifying Registers and Memory:
+
+(gdb) break main
+Breakpoint 1 at 0x8048579: file SGDE-video-6.c, line 46.
+(gdb) run AAAA 10 20
+Starting program: /home/osboxes/Downloads/GNU Debugger/SGDE-Files/video-6/video-6/video-6/SGDE-video-6 AAAA 10 20
+
+Breakpoint 1, main (argc=4, argv=0xbffff694) at SGDE-video-6.c:46
+46		int sum = 0;
+(gdb) x/5c argv[1]
+0xbffff81d:	65 'A'	65 'A'	65 'A'	65 'A'	0 '\000'
+(gdb) set {char} 0xbffff81d = 'B'
+(gdb) x/5c argv[1]
+0xbffff81d:	66 'B'	65 'A'	65 'A'	65 'A'	0 '\000'
+(gdb) set {char} 0xbffff81d = 67  
+(gdb) x/5c argv[1]
+0xbffff81d:	67 'C'	65 'A'	65 'A'	65 'A'	0 '\000'
+(gdb) set {char} 0xbffff81d = 'B'
+(gdb) set {char} ( 0xbffff81d +1 ) = 'B'
+(gdb) set {char} ( 0xbffff81d +2 ) = 'B'
+(gdb) set {char} ( 0xbffff81d +3 ) = 'B'
+(gdb) x/5c argv[1]
+0xbffff81d:	66 'B'	66 'B'	66 'B'	66 'B'	0 '\000'
