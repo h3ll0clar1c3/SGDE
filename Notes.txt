@@ -234,3 +234,12 @@ Breakpoint 1, main (argc=4, argv=0xbffff694) at SGDE-video-6.c:46
 (gdb) set {char} ( 0xbffff81d +3 ) = 'B'
 (gdb) x/5c argv[1]
 0xbffff81d:	66 'B'	66 'B'	66 'B'	66 'B'	0 '\000'
+(gdb) c
+Continuing.
+
+
+BBBB
+
+Sum of 10 + 20 is 30
+
+[Inferior 1 (process 9768) exited normally]
